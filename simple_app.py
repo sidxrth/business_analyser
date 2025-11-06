@@ -5,6 +5,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 import os
 import time
+import subprocess
+import sys
+
 
 # ------------------------------------------------------------
 # ⚙️ CONFIGURATION
@@ -379,10 +382,10 @@ st.sidebar.markdown("### INTELLIGENCE PLATFORM")
 st.sidebar.markdown("Current Mode: **Beginner**")
 
 # Updated switch label and target file
+
 if st.sidebar.button("Switch to Business Mode"):
-    # Execute the command to switch to the business_app.py file
-    st.experimental_set_query_params(mode='business')
-    os.system("streamlit run business_app.py")
+    st.query_params["mode"] = "analyst"
+    subprocess.Popen([sys.executable, "-m", "streamlit", "run", "app.py"])
     st.stop()
 
 st.sidebar.markdown("---")
